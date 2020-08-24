@@ -8,6 +8,7 @@ students = {}
 student_names = [];
 master_score = [];
 
+#Generate answers
 for row in reader:
     if "Integration" in row['AttendeeType']:
         answers[row['PollQuestion']] = row['AttendeePollAnswer']
@@ -16,7 +17,8 @@ for row in reader:
             pass
         else :
             student_names.append(row['AttendeeName'])
-
+        
+#Generate Dictionary of Correct or not for each student
 reader = csv.DictReader(open('results.csv', encoding = 'utf-8-sig'))        
 for row in reader:
     if "Integration" in row['AttendeeType']:
@@ -30,6 +32,7 @@ answer_header = []
 answer_header.append("Name")
 answer_header.append("Score out of: " + str(len(answers)))
 
+#Generate array list of answers 
 for answer in answers:
     answer_header.append([answer,answers[answer]])
 
