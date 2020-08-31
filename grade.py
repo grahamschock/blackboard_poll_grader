@@ -1,16 +1,16 @@
 #Author: Graham Schock gschock@gwu.edu
 import csv
-
+import sys
 
 reader = csv.DictReader(open('results.csv', encoding = 'utf-8-sig'))
 answers = {}
 students = {}
 student_names = [];
 master_score = [];
-
+answerer = sys.argv[1]
 #Generate answers
 for row in reader:
-    if "Integration" in row['AttendeeType']:
+    if answerer  in row['AttendeeName']:
         answers[row['PollQuestion']] = row['AttendeePollAnswer']
     else:
         if row['AttendeeName'] in student_names:
@@ -21,9 +21,7 @@ for row in reader:
 #Generate Dictionary of Correct or not for each student
 reader = csv.DictReader(open('results.csv', encoding = 'utf-8-sig'))        
 for row in reader:
-    if "Integration" in row['AttendeeType']:
-        pass
-    elif answers[row['PollQuestion']] in row['AttendeePollAnswer']:
+    if answers[row['PollQuestion']] in row['AttendeePollAnswer']:
         students[row['AttendeeName'], row['PollQuestion']] = [row['AttendeePollAnswer'], "Correct"]
     else:
         students[row['AttendeeName'], row['PollQuestion']] = [row['AttendeePollAnswer'], "Incorrect"]

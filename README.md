@@ -9,6 +9,11 @@ A python script that will take a blackboard poll and turn into grades
 
 usage:
 ```
-python3 grade.py
+python3 grade.py "<name of poll runner>"
+```
+
+ex:
+```
+python3 grade.py "Graham Schock"
 ```
 Will result in a grades.csv file from a results.csv file
